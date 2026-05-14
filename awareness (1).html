@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>⚠️ You Were Phished! — Awareness Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: #f0f2f5;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #c0392b 0%, #8e1a11 100%);
+      color: #fff;
+      text-align: center;
+      padding: 52px 20px 44px;
+    }
+    .hero .icon { font-size: 3.5rem; display: block; margin-bottom: 14px; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.08);} }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .hero p { font-size: 1.05rem; color: #ffd5d0; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+
+    .intro-box {
+      background: #fff3cd;
+      border: 1.5px solid #f5c842;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      font-size: 0.97rem;
+      color: #7d5a00;
+      line-height: 1.7;
+    }
+
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: 1.25rem;
+      color: #006633;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #006633;
+    }
+
+    .clues-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .clue-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 22px 20px;
+      border-top: 4px solid #c0392b;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.5s forwards;
+    }
+    .clue-card:nth-child(1){animation-delay:0.1s}
+    .clue-card:nth-child(2){animation-delay:0.2s}
+    .clue-card:nth-child(3){animation-delay:0.3s}
+    .clue-card:nth-child(4){animation-delay:0.4s}
+    .clue-card:nth-child(5){animation-delay:0.5s}
+    .clue-card:nth-child(6){animation-delay:0.6s}
+    @keyframes slideUp { to { opacity:1; transform:translateY(0); } }
+
+    .clue-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+    .clue-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #c0392b;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .clue-card p { font-size: 0.88rem; color: #555; line-height: 1.6; }
+    .clue-bad {
+      background: #fff0ee;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 0.82rem;
+      color: #a93226;
+      font-family: monospace;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    .clue-good {
+      background: #eaffea;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 0.82rem;
+      color: #1e7e34;
+      font-family: monospace;
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .tips-box {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 28px 32px;
+      margin-bottom: 32px;
+    }
+    .tip-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .tip-row:last-child { border-bottom: none; }
+    .tip-num {
+      background: #006633;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .tip-text { font-size: 0.92rem; color: #444; line-height: 1.6; }
+
+    .cta-area {
+      text-align: center;
+      background: #006633;
+      color: #fff;
+      border-radius: 10px;
+      padding: 36px 24px;
+    }
+    .cta-area h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .cta-area p { font-size: 0.93rem; color: #a8f0c8; margin-bottom: 24px; }
+    .cta-btn {
+      display: inline-block;
+      padding: 13px 36px;
+      background: #fff;
+      color: #006633;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .cta-btn:hover { background: #d6f5e5; transform: scale(1.03); }
+
+    footer {
+      background: #1a1a2e;
+      color: #888;
+      text-align: center;
+      padding: 16px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <span class="icon">🎣</span>
+    <h1>You Just Got Phished!</h1>
+    <p>This was a <strong>simulated phishing exercise</strong>. Your real credentials are safe — but here's what you missed.</p>
+  </div>
+
+  <div class="container">
+
+    <div class="intro-box">
+      <strong>What happened?</strong> You just submitted your login credentials to a <strong>fake website</strong> designed to look like the Iqra University Student Portal. In a real attack, a hacker would now have your username and password. This exercise is meant to help you spot phishing attempts before it's too late.
+    </div>
+
+    <h2 class="section-title">🔍 Red Flags You Missed</h2>
+    <div class="clues-grid">
+
+      <div class="clue-card">
+        <span class="clue-icon">🌐</span>
+        <h4>Fake Domain Name</h4>
+        <p>The real IU portal uses the official domain. This site used a lookalike domain to trick you.</p>
+        <span class="clue-bad">❌ iq-studentportal.edu.pk</span><br/>
+        <span class="clue-good">✅ iqra.edu.pk</span>
+      </div>
+
+      <div class="clue-card">
+        <span class="clue-icon">🔒</span>
+        <h4>SSL ≠ Safety</h4>
+        <p>The padlock icon means the connection is encrypted — but it does <strong>not</strong> mean the site is legitimate. Attackers get free SSL certificates too.</p>
+        <span class="clue-bad">❌ Padlock ≠ Trusted Site</span>
+      </div>
+
+      <div class="clue-card">
+        <span class="clue-icon">📧</span>
+        <h4>Suspicious Link Source</h4>
+        <p>Did you get this link via WhatsApp, SMS, or unknown email? Legitimate portals are bookmarked or typed manually.</p>
+        <span class="clue-bad">❌ Link from unknown source</span>
+      </div>
+
+      <div class="clue-card">
+        <span class="clue-icon">⚡</span>
+        <h4>Urgency Tactics</h4>
+        <p>Phishing pages create panic — "Your account will be suspended!" This pressures you to act without thinking.</p>
+        <span class="clue-bad">❌ Never act under pressure</span>
+      </div>
+
+      <div class="clue-card">
+        <span class="clue-icon">🎨</span>
+        <h4>Copy-Paste Design</h4>
+        <p>Attackers copy the look of real sites exactly. Visual similarity does NOT confirm authenticity — always check the URL!</p>
+        <span class="clue-bad">❌ Looks real ≠ Is real</span>
+      </div>
+
+      <div class="clue-card">
+        <span class="clue-icon">🏛️</span>
+        <h4>No Official Verification</h4>
+        <p>Real IU portals are announced via official channels: notice boards, iqra.edu.pk emails, and official social pages.</p>
+        <span class="clue-good">✅ Always verify via official sources</span>
+      </div>
+
+    </div>
+
+    <h2 class="section-title">🛡️ How to Stay Safe</h2>
+    <div class="tips-box">
+      <div class="tip-row">
+        <div class="tip-num">1</div>
+        <div class="tip-text"><strong>Always check the URL bar</strong> before entering credentials. Look for the exact official domain <code>iqra.edu.pk</code>, not lookalikes.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-num">2</div>
+        <div class="tip-text"><strong>Never click links in SMS or WhatsApp</strong> that ask for your login. Go directly by typing the address yourself.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-num">3</div>
+        <div class="tip-text"><strong>Enable Two-Factor Authentication (2FA)</strong> wherever possible. Even if your password is stolen, 2FA adds extra protection.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-num">4</div>
+        <div class="tip-text"><strong>Use a password manager.</strong> It will only auto-fill on the correct domain — and refuse on fake sites.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-num">5</div>
+        <div class="tip-text"><strong>When in doubt, call the IU IT helpdesk directly</strong> to verify if a login page or link is legitimate.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-num">6</div>
+        <div class="tip-text"><strong>Report suspicious links</strong> to your university's IT department immediately so others can be warned.</div>
+      </div>
+    </div>
+
+    <div class="cta-area">
+      <h3>Stay Alert, Stay Safe 🔐</h3>
+      <p>This simulation was created for educational purposes only. Share this with your classmates to build a more cyber-aware community.</p>
+      <a href="index.html" class="cta-btn">← Go Back to Login Page</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>⚠️ This is an educational phishing simulation tool. No real credentials were collected. &nbsp;|&nbsp; Built for Cybersecurity Awareness</p>
+  </footer>
+
+</body>
+</html>

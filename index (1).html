@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iqra University — Student Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span>🔒 https://iq-studentportal.edu.pk</span>
+    <span class="topbar-right">Help &nbsp;|&nbsp; Contact IT</span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-circle">IU</div>
+        <div class="logo-text">
+          <span class="uni-name">Iqra University</span>
+          <span class="portal-name">Student Information Portal</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Admissions</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-wrap">
+    <div class="login-card">
+      <div class="card-left">
+        <h2>Welcome Back</h2>
+        <p>Access your academic records, fee details, timetable, and more through the official Iqra University Student Portal.</p>
+        <ul class="features">
+          <li>📄 Exam Results & Transcripts</li>
+          <li>💳 Fee Payment & Challan</li>
+          <li>📅 Class Timetable</li>
+          <li>📬 University Notifications</li>
+        </ul>
+        <div class="notice">
+          ⚠️ <strong>Notice:</strong> For security, please do not share your credentials with anyone.
+        </div>
+      </div>
+
+      <div class="card-right">
+        <h3>Student Login</h3>
+        <p class="sub">Enter your IU Student ID and password</p>
+
+        <form id="loginForm">
+          <div class="field">
+            <label for="rollno">Student ID / Email</label>
+            <input type="text" id="rollno" placeholder="e.g. IU-2021-BS-001" required />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required />
+          </div>
+          <div class="remember-row">
+            <label><input type="checkbox" /> Remember me</label>
+            <a href="#" class="forgot">Forgot Password?</a>
+          </div>
+          <button type="submit" class="login-btn">Login to Portal</button>
+        </form>
+
+        <p class="helptext">Having trouble? <a href="#">Contact IT Support</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 Iqra University. All rights reserved. &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Use</a></p>
+    <p style="margin-top:4px; color:#aaa; font-size:0.78rem;">IT Helpdesk: ithelpdesk@iqra.edu.pk &nbsp;|&nbsp; 021-111-555-474</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
